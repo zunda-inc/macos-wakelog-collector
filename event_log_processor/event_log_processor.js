@@ -61,7 +61,6 @@ export const event_log_processor = async (bucket, key, aggregated, archived) => 
         columns: true,
         skip_empty_lines: true,
       });
-      console.log('loaded', records);
 
       for (let i = 0, len = newLogs[yearMonth].length; i < len; i++) {
         const newItem = newLogs[yearMonth][i];
@@ -93,14 +92,12 @@ export const event_log_processor = async (bucket, key, aggregated, archived) => 
       aggregatedLogs = records;
     } catch(ex) {
       if (ex.Code == 'NoSuchKey') {
-        console.log('NoSuchKey')
         aggregatedLogs = newLogs[yearMonth];
       } else {
         throw ex;
       }
     }
 
-    console.log(aggregatedLogs);
     const csvString = stringify(aggregatedLogs, {
       header: true,
       quoted_string: true,
@@ -127,6 +124,5 @@ export const event_log_processor = async (bucket, key, aggregated, archived) => 
     });
     await s3Client.send(deleteRawLogCommand);
   }
-
-  return 1;
+  return true;
 };
