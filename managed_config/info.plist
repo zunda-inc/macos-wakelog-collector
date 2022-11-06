@@ -5,6 +5,6 @@
     <key>endpoint</key>
     <string>http://localhost:3000/</string>
     <key>token</key>
-    <string>EXAMPLE</string>
+    <string>ReplaceMeForSecurity</string>
   </dict>
 </plist>
