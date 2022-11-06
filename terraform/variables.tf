@@ -9,3 +9,9 @@ variable "namespace" {
   type  = string
   default = "z-wlc"
 }
+
+variable "client_token" {
+  description = "Client token"
+  type  = string
+  default = "ReplaceMeForSecurity"
+}
