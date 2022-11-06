@@ -8,7 +8,6 @@
 LOG_DIR="/var/log/wakelog_collector"
 DISPLAY_LOG_FILE="${LOG_DIR}/display.log"
 POWER_LOG_FILE="${LOG_DIR}/power.log"
-MANAGED_CONFIG_NAMESPACE="jp.co.zunda.WakelogCollector"
 MAX_LINES=200
 
 mkdir -p $LOG_DIR
