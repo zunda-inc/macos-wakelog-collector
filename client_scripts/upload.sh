@@ -1,4 +1,9 @@
 #!/bin/zsh
+# Copyright 2022 ZUNDA Inc.
+# 
+# Use of this source code is governed by an MIT-style
+# license that can be found in the LICENSE file or at
+# https://opensource.org/licenses/MIT.
 
 CONSOLE_USER=`ls -la /dev/console | cut -d " " -f 4`
 DEVICE_SERIAL=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
