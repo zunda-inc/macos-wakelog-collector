@@ -12,3 +12,21 @@ resource "aws_s3_bucket_acl" "log_upload_bucker_acl" {
   bucket = aws_s3_bucket.log_upload_bucket.id
   acl = "private"
 }
+
+resource "aws_s3_bucket" "aggregated_log_bucket" {
+  bucket = "${var.namespace}-aggregated-logs"
+}
+
+resource "aws_s3_bucket_acl" "aggregated_log_bucket_acl" {
+  bucket = aws_s3_bucket.aggregated_log_bucket.id
+  acl = "private"
+}
+
+resource "aws_s3_bucket" "log_archive_bucket" {
+  bucket = "${var.namespace}-archived-logs"
+}
+
+resource "aws_s3_bucket_acl" "log_archive_bucket_acl" {
+  bucket = aws_s3_bucket.log_archive_bucket.id
+  acl = "private"
+}
