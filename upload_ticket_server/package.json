@@ -1,0 +1,16 @@
+{
+  "name": "upload_ticket_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ZUNDA Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.204.0",
+    "@aws-sdk/s3-request-presigner": "^3.204.0"
+  }
+}
