@@ -13,11 +13,9 @@ MAX_LINES=200
 
 mkdir -p $LOG_DIR
 
-(
-    cat $DISPLAY_LOG_FILE 2>/dev/null;
-    pmset -g log | grep -e "\tKernel Idle sleep preventers" -e "\tDisplay is turned"
-) \
-  | sort | uniq | tail -n${MAX_LINES} \
+cat <(cat $DISPLAY_LOG_FILE 2>/dev/null) \
+ <(pmset -g log | grep -e "\tKernel Idle sleep preventers" -e "\tDisplay is turned") \
+ | sort | uniq | tail -n${MAX_LINES} \
 > $DISPLAY_LOG_FILE
 
 last shutdown | grep -E "^shutdown" | sed -e "s/shutdown.*\(.\{17\}\)/\1/g" \
