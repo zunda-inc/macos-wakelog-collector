@@ -89,6 +89,7 @@ resource "aws_lambda_function" "event_log_processor" {
     handler = "index.dequeue"
     filename = data.archive_file.event_log_processor.output_path
     source_code_hash = data.archive_file.event_log_processor.output_base64sha256
+    timeout = 180
     environment {
       variables = {
         aws_region = var.aws_region
