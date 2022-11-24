@@ -94,6 +94,7 @@ resource "aws_lambda_function" "event_log_processor" {
         aws_region = var.aws_region
         aws_s3_aggregated_log_bucket = aws_s3_bucket.aggregated_log_bucket.bucket
         aws_s3_log_archive_bucket = aws_s3_bucket.log_archive_bucket.bucket
+        tz = "Asia/Tokyo"
       }
     }
 }

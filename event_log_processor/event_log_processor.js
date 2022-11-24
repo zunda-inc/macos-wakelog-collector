@@ -7,13 +7,14 @@
 import { S3Client, GetObjectCommand, PutObjectCommand, CopyObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import * as readline from 'node:readline';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc.js';
 import timezone from 'dayjs/plugin/timezone.js';
 import { stringify } from 'csv-stringify/sync';
 import { parse } from 'csv-parse/sync';
 
 export const event_log_processor = async (bucket, key, aggregated, archived) => {
+  dayjs.extend(utc);
   dayjs.extend(timezone);
-  dayjs.tz.setDefault(process.env.tz || "Asia/Tokyo");
 
   const s3Client = new S3Client({ region: process.env.aws_region });
   const getRawLogCommand = new GetObjectCommand({
@@ -36,7 +37,7 @@ export const event_log_processor = async (bucket, key, aggregated, archived) => 
       const yearMonth = day.format('YYYYMM');
       newLogs[yearMonth] ||= [];
       newLogs[yearMonth].push({
-        timestamp: dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss'),
+        timestamp: dayjs(timestamp).tz(process.env.tz || "Asia/Tokyo").format('YYYY-MM-DD HH:mm:ss'),
         deviceSerial: deviceSerial,
         user: user,
         event: [logType, eventFlag[1]].join("-")
