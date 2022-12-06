@@ -10,6 +10,7 @@ resource "aws_sns_topic" "log_upload_bucket_put" {
 
 resource "aws_sqs_queue"  "log_upload_bucket_put" {
     name = "${var.namespace}-log-upload-queue"
+    visibility_timeout_seconds = 240
 
   policy = <<POLICY
 {
